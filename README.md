@@ -186,3 +186,4 @@ This project is licensed under the [MIT License](LICENSE).
 ## Contact
 
 For questions or support, please open an issue on GitHub or contact [kennethmburu21@gmail.com].
+

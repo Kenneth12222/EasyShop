@@ -432,7 +432,7 @@ def get_order(order_id):
         "items": items
     }), 200
 
-
+# create a payment intent
 
 @app.route('/create-payment-intent', methods=['POST'])
 @login_required
@@ -461,7 +461,8 @@ def create_payment_intent():
         }), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
- 
+
+#  register a webhook endpoint
 @app.route('/create-checkout-session', methods=['POST'])
 @login_required
 def create_checkout_session():

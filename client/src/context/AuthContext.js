@@ -9,8 +9,6 @@ export const AuthProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    // Optionally, implement a token/session check here.
-    // For example, you could check local storage for a token and validate it.
   }, []);
 
   const handleLogin = async (username, password) => {
