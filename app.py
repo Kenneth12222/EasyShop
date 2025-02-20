@@ -43,13 +43,12 @@ class User(db.Model):
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    image = db.Column(db.String(255), nullable=True)  # Store file path or URL
+    image = db.Column(db.String(255), nullable=True)  
     name = db.Column(db.String(80), nullable=False)
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.Text, nullable=True)
     stock = db.Column(db.Integer, nullable=False)
 
-# Additional models for Cart and Orders (for regular user functionality)
 class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -139,7 +138,6 @@ def register_admin():
     if User.query.filter_by(email=email).first():
         return jsonify({"message": "Email already exists"}), 400
 
-    # Create an admin user (is_admin=True)
     user = User(username=username, email=email, is_admin=True)
     user.set_password(password)
     db.session.add(user)
@@ -184,7 +182,7 @@ def index():
 @app.route('/products/<int:product_id>', methods=['GET'])
 def get_product(product_id):
     product = db.session.get(Product, product_id)
-    base_url = request.host_url.rstrip('/')  # e.g., "http://localhost:5000"
+    base_url = request.host_url.rstrip('/')  
     if not product:
         return jsonify({"message": "Product not found"}), 404
     return jsonify({
@@ -200,7 +198,7 @@ def get_product(product_id):
 @app.route('/products', methods=['POST'])
 @admin_required
 def create_product():
-    # Expecting multipart/form-data (fields in request.form and file in request.files)
+
     name = request.form.get('name')
     price = request.form.get('price')
     description = request.form.get('description')
@@ -268,12 +266,10 @@ def update_product(product_id):
         os.makedirs(upload_folder, exist_ok=True)
         filepath = os.path.join(upload_folder, filename)
         image_file.save(filepath)
-        # Store the relative URL that the client can use
         product.image = '/uploads/' + filename
 
     db.session.commit()
     return jsonify({"message": "Product updated successfully"}), 200
-
 
 @app.route('/products/<int:product_id>', methods=['DELETE'])
 @admin_required
@@ -281,23 +277,16 @@ def delete_product(product_id):
     product = db.session.get(Product, product_id)
     if not product:
         return jsonify({"message": "Product not found"}), 404
-
-    # Delete the associated image file if it exists
     if product.image:
         try:
             os.remove(os.path.join(os.getcwd(), product.image.lstrip('/')))
         except FileNotFoundError:
-            pass  # Ignore if the file doesn't exist
+            pass  
 
     db.session.delete(product)
     db.session.commit()
     return jsonify({"message": "Product deleted successfully"}), 200
 
-# ------------------------------------------------------------------------------
-# (Optional) Additional Endpoints for Cart and Orders
-# ------------------------------------------------------------------------------
-# These endpoints allow regular users to add products to a cart and place orders.
-# They are left here for completeness, though the focus is on the admin panel.
 
 @app.route('/cart', methods=['GET'])
 @login_required
@@ -337,9 +326,7 @@ def add_to_cart():
     if cart_item:
         new_quantity = cart_item.quantity + quantity
 
-        # If decrementing causes the quantity to drop to zero or below, remove the item
         if new_quantity <= 0:
-            # Restore the product stock before removal
             product.stock += cart_item.quantity
             db.session.delete(cart_item)
             db.session.commit()
@@ -349,9 +336,6 @@ def add_to_cart():
         if quantity > 0 and product.stock < quantity:
             return jsonify({"message": "Not enough stock"}), 400
 
-        # Adjust stock:
-        # - If incrementing, subtract the additional quantity
-        # - If decrementing, add back the absolute value of the quantity removed
         if quantity > 0:
             product.stock -= quantity
         else:
@@ -360,7 +344,7 @@ def add_to_cart():
         cart_item.quantity = new_quantity
 
     else:
-        # If there’s no existing cart item, only allow positive quantities.
+       
         if quantity <= 0:
             return jsonify({"message": "Cannot add negative quantity for new item"}), 400
         if product.stock < quantity:
@@ -452,22 +436,19 @@ def get_order(order_id):
 @app.route('/create-payment-intent', methods=['POST'])
 @login_required
 def create_payment_intent():
-    # Get the user's cart items (assuming you’re using the existing cart logic)
     user_id = session['user_id']
     cart_items = Cart.query.filter_by(user_id=user_id).all()
     if not cart_items:
         return jsonify({"message": "Cart is empty"}), 400
 
-    # Calculate total amount (in dollars) from the cart
     total_amount = sum(
         item.quantity * db.session.get(Product, item.product_id).price 
         for item in cart_items
     )
-    # Stripe expects the amount in cents
-    amount_in_cents = int(total_amount * 100)
 
+    amount_in_cents = int(total_amount * 100)
     try:
-        # Create a PaymentIntent with the calculated amount
+
         intent = stripe.PaymentIntent.create(
             amount=amount_in_cents,
             currency='usd',
@@ -488,7 +469,6 @@ def create_checkout_session():
     if not cart_items:
         return jsonify({"message": "Cart is empty"}), 400
 
-    # Calculate total amount in cents
     total_amount = sum(
         item.quantity * db.session.get(Product, item.product_id).price
         for item in cart_items
@@ -509,13 +489,12 @@ def create_checkout_session():
                 'quantity': 1,
             }],
             mode='payment',
-            success_url='https://yourdomain.com/success',  # Replace with your success URL
-            cancel_url='https://yourdomain.com/cancel',    # Replace with your cancel URL
+            success_url='https://yourdomain.com/success', 
+            cancel_url='https://yourdomain.com/cancel',    
         )
         return jsonify({'sessionId': checkout_session.id})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 
 # ------------------------------------------------------------------------------
@@ -523,44 +502,6 @@ def create_checkout_session():
 # ------------------------------------------------------------------------------
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()  # Create tables if they don't exist yet
+        db.create_all()  
     app.run(debug=True)
-
-# 
-#                                                 
-# @app.route('/create-checkout-session', methods=['POST'])
-# @login_required
-# def create_checkout_session():
-#     user_id = session['user_id']
-#     cart_items = Cart.query.filter_by(user_id=user_id).all()
-#     if not cart_items:
-#         return jsonify({"message": "Cart is empty"}), 400
-
-#     # Calculate total amount in cents
-#     total_amount = sum(
-#         item.quantity * db.session.get(Product, item.product_id).price
-#         for item in cart_items
-#     )
-#     amount_in_cents = int(total_amount * 100)
-
-#     try:
-#         session = stripe.checkout.Session.create(
-#             payment_method_types=['card'],
-#             line_items=[{
-#                 'price_data': {
-#                     'currency': 'usd',
-#                     'product_data': {
-#                         'name': 'Order from My Shop',
-#                     },
-#                     'unit_amount': amount_in_cents,
-#                 },
-#                 'quantity': 1,
-#             }],
-#             mode='payment',
-#             success_url='https://yourdomain.com/success',
-#             cancel_url='https://yourdomain.com/cancel',
-#         )
-#         return jsonify({'sessionId': session.id})
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 500
 
