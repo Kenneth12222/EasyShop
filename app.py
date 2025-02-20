@@ -6,6 +6,7 @@ from flask_cors import CORS
 import os
 from werkzeug.utils import secure_filename
 import stripe    
+
 # ------------------------------------------------------------------------------
 # App & Database Configuration
 # ------------------------------------------------------------------------------
@@ -495,7 +496,6 @@ def create_checkout_session():
         return jsonify({'sessionId': checkout_session.id})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 # ------------------------------------------------------------------------------
 # Main Entrypoint
