@@ -47,7 +47,7 @@ A Flask-based backend application that serves as the API for an e-commerce platf
 
    ```bash
    python -m venv venv
-   source venv/bin/activate    # On Windows, use: venv\Scripts\activate
+   source venv/bin/activate or . venv/bin/activate    # On Windows, use: venv\Scripts\activate on Linux . venv/bin/activate or source venv/bin/activate
    ```
 
 3. **Install Dependencies:**
