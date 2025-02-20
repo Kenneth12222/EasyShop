@@ -39,8 +39,8 @@ A Flask-based backend application that serves as the API for an e-commerce platf
 1. **Clone the Repository:**
 
    ```bash
-   git clone <repository-url>
-   cd <repository-folder>
+   git clone https://github.com/Kenneth12222/EasyShop.git
+   cd EasyShop
    ```
 
 2. **Set Up a Virtual Environment:**
