@@ -1,0 +1,161 @@
+/* General Styles */
+.about-container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    background-image: url("https://images.pexels.com/photos/2861656/pexels-photo-2861656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+  }
+  
+  .hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+  
+  /* Introduction Section */
+  .intro-section {
+    margin: 40px 0;
+    text-align: center;
+  }
+  
+  .intro-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .intro-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* History/Timeline Section */
+  .history-section {
+    margin: 40px 0;
+    text-align: center;
+  }
+  
+  .history-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .timeline {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .timeline-item {
+    flex: 1;
+    max-width: 300px;
+    margin: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .timeline-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .timeline-item p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  /* Team Section */
+  .team-section {
+    margin: 40px 0;
+    text-align: center;
+  }
+  
+  .team-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .team-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .team-member {
+    flex: 1;
+    max-width: 300px;
+    margin: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .team-member img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .team-member h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .team-member p {
+    font-size: 1rem;
+    color: #777;
+  }
+  
+  /* Call-to-Action Section */
+  .cta-section {
+    margin: 40px 0;
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+  }
+  
+  .cta-section h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .cta-section p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .cta-button:hover {
+    background-color: #0056b3;
+  }

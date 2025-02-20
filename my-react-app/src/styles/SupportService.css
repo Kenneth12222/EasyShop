@@ -1,0 +1,84 @@
+#ecommerce-support {
+    position: relative;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #ff6600, #e65c00);
+    color: #fff;
+    text-align: center;
+  }
+  
+  .support-overlay {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .support-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .support-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  .support-options {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  
+  .support-option {
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 250px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .support-option:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+  
+  .support-option i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  
+  .support-option h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .support-option p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+  
+  .contact-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: #fff;
+    color: #e65c00;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .contact-button:hover {
+    background-color: #e65c00;
+    color: #fff;
+  }
+  
+  @media (max-width: 768px) {
+    .support-options {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  

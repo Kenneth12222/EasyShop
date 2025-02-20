@@ -1,0 +1,135 @@
+/* Main Section Container */
+.latest-collection {
+  background: #fff;
+  padding: 40px 20px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Scroll Area Styles */
+.scroll-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.scroll-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px 0;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Product Card Styling */
+.product-card {
+  flex: 0 0 auto;
+  width: 220px;
+  background: #f8f8f8;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-image-wrapper {
+  width: 100%;
+  height: 180px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.product-name {
+  font-size: 1rem;
+  margin: 0 0 10px;
+  font-weight: 500;
+}
+
+.product-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+/* Scroll Buttons */
+.scroll-button {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease;
+}
+
+.scroll-button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.scroll-button.left {
+  left: -10px;
+}
+
+.scroll-button.right {
+  right: -10px;
+}
+
+.scroll-button span {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .scroll-button.left {
+    left: 5px;
+  }
+  .scroll-button.right {
+    right: 5px;
+  }
+  .product-card {
+    width: 180px;
+  }
+}

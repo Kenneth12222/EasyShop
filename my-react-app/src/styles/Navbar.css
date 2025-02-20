@@ -1,0 +1,220 @@
+:root {
+    --primary-color: #007bff;
+    --hover-primary: #0056b3;
+    --secondary-color: #6c757d;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --nav-height: 70px;
+    --transition-speed: 0.3s;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar {
+    background-color: var(--background-color);
+    box-shadow: var(--shadow);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin: 0;
+  }
+  
+  .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+  }
+
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .logo-image {
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+    margin-right: 8px;
+  }
+  
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+  
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .hamburger {
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-color);
+    transition: background-color var(--transition-speed) ease;
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-links li {
+    margin: 0 12px;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: color var(--transition-speed) ease;
+  }
+  
+  .nav-link:hover {
+    color: var(--primary-color);
+  }
+  
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-menu {
+    position: relative;
+  }
+  
+  .profile-button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .profile-avatar {
+    padding: 3px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 8px;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+  }
+  
+  .profile-name {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-right: 4px;
+  }
+  
+  .dropdown-icon {
+    font-size: 0.7rem;
+    color: var(--secondary-color);
+    transition: transform var(--transition-speed) ease;
+  }
+  
+  .profile-menu .profile-button:focus .dropdown-icon,
+  .profile-menu .profile-button:hover .dropdown-icon {
+    transform: rotate(180deg);
+  }
+  
+  .profile-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background-color: var(--background-color);
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    min-width: 180px;
+    overflow: hidden;
+    animation: fadeIn var(--transition-speed) ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .dropdown-link {
+    display: block;
+    padding: 10px 16px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    transition: background-color var(--transition-speed) ease;
+  }
+  
+  .dropdown-link:hover {
+    background-color: #f7f7f7;
+  }
+  
+  .logout-button {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .auth-links .auth-link {
+    margin-left: 16px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: color var(--transition-speed) ease;
+  }
+  
+  .auth-links .auth-link:hover {
+    color: var(--primary-color);
+  }
+  
+  @media (max-width: 768px) {
+    .mobile-menu-toggle {
+      display: flex;
+    }
+    
+    .navbar-links {
+      position: absolute;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      background-color: var(--background-color);
+      flex-direction: column;
+      align-items: center;
+      display: none;
+      padding: 16px 0;
+      box-shadow: var(--shadow);
+    }
+    
+    .navbar-links.active {
+      display: flex;
+    }
+    
+    .navbar-links li {
+      margin: 8px 0;
+    }
+    
+    .navbar-container {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      height: auto;
+    }
+  }
+  
