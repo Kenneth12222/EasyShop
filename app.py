@@ -13,8 +13,8 @@ app = Flask(__name__)
 # For security, the secret key should be stored in an environment variable.
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", os.urandom(24))
 # Stripe configuration
-stripe_secret_key = 'sk_test_51P2AEeP3jLWWEkkLcx5sgF24BNmyNVFasBaOVsPL5dpEvRHIrBf7vS5ZHD5bymOd9gsKcfpJOHrp0UMB5zkOrtV4009hajkGNf'
-stripe_publish_key = 'pk_test_51P2AEeP3jLWWEkkLMDg24j89ONmq3R7jBmTqzDwHoZX6kWnTfIVVADnDvxQvkMrKrjFFdxiNvCtODjas9oD5JlY000JBa23LMi'
+stripe_secret_key = os.environ.get("STRIPE_SECRET_KEY")
+stripe_publish_key = os.environ.get("STRIPE_PUBLISH_KEY")
 stripe.api_key = stripe_secret_key
 
 basedir = os.path.abspath(os.path.dirname(__file__))
